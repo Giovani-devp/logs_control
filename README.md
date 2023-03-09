@@ -1,27 +1,39 @@
-# LogV1
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+<body>
+	<h1>Projeto Angular - Monitoramento de Logs Internos</h1>
+	<h2>Descrição</h2>
+	<p>Este projeto é um formulário em Angular que retorna uma tela de monitoramento de logs internos de um mock. Toda a lógica de renderização é feita pelo front-end de acordo com o retorno do mock. A maior dificuldade deste projeto foi criar métodos para trabalhar com os dados, pois o mock não tem um padrão definido.</p>
+less
+Copy code
+<h2>Tecnologias Utilizadas</h2>
+<ul>
+	<li>Angular</li>
+	<li>TypeScript</li>
+	<li>HTML</li>
+	<li>CSS (com SCSS)</li>
+	<li>Bootstrap</li>
+	<li>RxJS</li>
+</ul>
 
-## Development server
+<h2>Conceitos Utilizados</h2>
+<ul>
+	<li>SOLID</li>
+</ul>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<h2>Como rodar o projeto</h2>
+<ol>
+	<li>Certifique-se de ter o Node.js instalado em sua máquina.</li>
+	<li>Clone este repositório em sua máquina local.</li>
+	<li>Abra o terminal na pasta do projeto.</li>
+	<li>Execute o comando <code>npm install</code> para instalar as dependências do projeto.</li> ou
+<li>Execute o comando <code>npm install --force</code> para instalar as dependências do projeto.</li>
+	<li>Execute o comando <code>ng serve</code> para iniciar o servidor de desenvolvimento.</li>
+	<li>Abra o navegador e acesse o endereço <code>http://localhost:4200</code>.</li>
+</ol>
 
-## Code scaffolding
+<h2>Mock logs</h2>
+<p>Os dados dos logs são fornecidos por um mock. Para mais detalhes sobre o mock, acessar <a href="https://run.mocky.io/v3/2bdad3bd-07cc-4aac-bf9d-c64bd4d61ffa/">https://run.mocky.io/v3/2bdad3bd-07cc-4aac-bf9d-c64bd4d61ffa/</a>.</p>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<h2>Conclusão</h2>
+<p>Este projeto é um exemplo de como criar uma tela de monitoramento de logs internos em Angular, utilizando os conceitos SOLID, RxJS, Bootstrap e SCSS. Embora tenha havido dificuldades ao trabalhar com o mock, foi possível criar métodos que permitem a exibição dos dados de forma eficiente.</p>
