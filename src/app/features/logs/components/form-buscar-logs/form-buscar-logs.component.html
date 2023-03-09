@@ -1,0 +1,467 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <div class="text-center mt-5">
+    <h1>Monitoramento de logs</h1>
+  </div>
+
+  <div class="col-lg-12 mx-auto">
+
+    <div class="card mt-2 mx-auto bg-light">
+
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span>Filtros</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="card-body bg-light">
+
+          <div class="container">
+
+            <form [formGroup]="formFilters" id="contact-form" role="form">
+
+              <div class="controls">
+
+                <div class="row mb-4">
+
+                  <div class="col-md-4">
+
+                    <div class="form-group">
+
+                      <label for="form_trace_id">Trace ID:</label>
+
+                      <input id="form_trace_id" type="text" name="trace_id" class="form-control"
+                        placeholder="ex.: 40CE020A-1F4E-4964-ABDA-3B7B06FD" formControlName="traceId">
+
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-4">
+
+                    <div class="form-group">
+
+                      <label for="form_session_id">Session ID:</label>
+
+                      <input id="form_session_id" type="text" name="session_id" class="form-control"
+                        placeholder="ex.: 40CE020A-1F4E-4964-ABDA-3B7B06FD" formControlName="sessionId">
+
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-2">
+
+                    <div class="form-group">
+
+                      <label for="form_date_first">De:</label>
+
+                      <input readonly placeholder="DD/MM/AAAA" matInput [matDatepicker]="firstDatePicker"
+                        (click)="firstDatePicker.open()" class="form-control" id="form_date_first"
+                        formControlName="birthday" formControlName="innicialDate" />
+
+                      <mat-datepicker #firstDatePicker>
+                      </mat-datepicker>
+
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-2">
+
+                    <div class="form-group">
+
+                      <label for="form_date_second">Até:</label>
+
+                      <input readonly placeholder="DD/MM/AAAA" matInput [matDatepicker]="secondDatePicker"
+                        (click)="secondDatePicker.open()" class="form-control" id="form_date_second"
+                        formControlName="birthday" formControlName="lastDate" />
+
+                      <mat-datepicker #secondDatePicker>
+                      </mat-datepicker>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <h6 class="h6__subtitles">
+                  Filtros Avançados - <a (click)="toggle()" href="javascript://">{{ buttonName }}</a>
+                </h6>
+
+                <hr>
+
+                <ng-container *ngIf="show">
+
+
+                  <div class="row mt-4">
+
+                    <div class="col-md-6">
+
+                      <div class="form-group">
+                        <label for="form_error">Erros que contenham:</label>
+
+                        <input id="form_error" type="text" name="error" class="form-control"
+                          placeholder="ex.: null reference exception" formControlName="errors">
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                      <div class="form-group">
+
+                        <label for="form_command">Comando</label>
+
+                        <input id="form_command" type="text" name="command" class="form-control"
+                          placeholder="ex.: CreateUserCommand">
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                      <div class="form-group">
+
+                        <label for="form_fail_validation">Falha de validação</label>
+
+                        <input id="form_fail_validation" type="text" name="fail" class="form-control"
+                          placeholder="ex.: CPF inválido">
+
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                  <h6 class="mt-4 h6__subtitles">
+                    Endpoints e retornos:
+                    
+                  </h6>
+
+                  <hr>
+
+                  <div class="row mt-4">
+
+                    <div class="col-md-2">
+
+                      <div class="form-group">
+
+                        <label for="form_method">Método:</label>
+
+                        <select id="form_method" name="method" class="form-control form-select"
+                          formControlName="method">
+
+                          <option value="" selected disabled>Selecione...</option>
+                          <option>GET</option>
+                          <option>POST</option>
+                          <option>PUT</option>
+                          <option>DELETE</option>
+
+                        </select>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                      <div class="form-group">
+
+                        <label for="form_route">Rota:</label>
+
+                        <input id="form_route" type="text" name="route" class="form-control"
+                          placeholder="Rota completa ou parcial. ex.: v1/contracts" formControlName="route">
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                      <div class="form-group">
+
+                        <label for="form_method">Status Code:</label>
+
+                        <select id="form_method" name="method" class="form-control form-select"
+                          formControlName="statusCode">
+
+                          <option value="" selected disabled>Selecione...</option>
+                          <option>200 - Ok</option>
+                          <option>201 - Created</option>
+                          <option>204 - NoContent</option>
+                          <option>400 - BadRequest</option>
+                          <option>401 - Unauthourized</option>
+                          <option>403 - Forbidden</option>
+                          <option>404 - NotFound</option>
+                          <option>500 - InternalServerError</option>
+
+                        </select>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </ng-container>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+
+                  <button class="btn btn-outline-warning me-md-2 btn-reset" (click)="resetForm()">
+                    <i class="bi bi-eraser"></i>
+                    Limpar
+                  </button>
+
+                  <button class="btn btn-outline-primary me-md-2 btn-send btn-block">
+                    <i class="bi bi-search"></i>
+                    Buscar
+                  </button>
+
+                </div>
+
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+
+
+    </div>
+
+  </div>
+
+
+  <div class="mb-3 mt-4" *ngFor="let item of mockData  | paginate
+  : {
+      itemsPerPage: 10 || pageSize,
+      currentPage: page,
+      totalItems: count
+    }">
+
+    <div class="card pt-0  mb-3" [class]="getClass(item.logs[3]?.contexData?.statusCode ||
+    item.logs[2]?.contexData.statusCode || item.logs[1]?.contexData.statusCode)">
+
+      <div class="card-body pt-1">
+
+        <div class="mb-1 d-flex justify-content-between">
+
+          <span>
+
+            <small class="text-muted">{{ item.date | date: 'dd/MM/yyyy, h:mm:ss a' }}</small>
+
+          </span>
+
+          <span>
+
+            <p class="text-muted">TraceId: {{ item.logs[0].contexData?.payload?.traceId ||
+              item.logs[1].contexData?.data?.attempt?.traceId }}</p>
+
+          </span>
+
+        </div>
+
+        <div [class]="getClassMethodAlert(item.logs[0].contexData?.method)" style="height: 1%;">
+
+          <div class="d-flex justify-content-between">
+
+            <span style="cursor: pointer; ">
+
+              <span [class]="getClassMethod(item.logs[0].contexData?.method)" style="margin-right: 5px;">{{
+                item.logs[0].contexData?.method }}</span>
+              <span>{{ item.logs[0].contexData.route }}</span>
+
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="card-body mt-3" [class]="getClass(item.logs[3]?.contexData?.statusCode ||
+          item.logs[2]?.contexData.statusCode || item.logs[1]?.contexData.statusCode)" *ngIf="item.logs[3]?.contexData.statusCode !== 500 
+          && item.logs[2]?.contexData.statusCode !== 500 
+          && item.logs[2]?.message?.includes('API Exception')">
+
+          <h5 class="card-title text-warning">
+
+            <i class="bi bi-exclamation-triangle"></i>
+            API Exception
+
+          </h5>
+
+          <p>{{ item.logs[2]?.message || item.logs[1]?.message }}</p>
+
+        </div>
+
+        <div class="card-body mt-3"
+          [class]="getClass(item.logs[3]?.contexData?.statusCode || item.logs[2]?.contexData.statusCode)" *ngIf="item.logs[3]?.contexData?.statusCode === 500 ||
+          item.logs[2]?.contexData.statusCode === 500">
+
+          <h5 class="card-title text-danger">
+            <i class="bi bi-bug"></i>
+            Exception
+          </h5>
+
+
+          <div class="stackTrace mb-3"
+            *ngIf=" item.logs[1]?.context === 'ApiExceptionLogContext' || item.logs[2]?.context === 'ApiExceptionLogContext'">
+
+            <div class="title-container">
+              <b>
+                <span class="ex-message" style="font-size: 15px;">
+                  {{ item.logs[1].contexData?.message || item.logs[2].contexData?.message }}
+                  <br>
+                </span>
+              </b>
+            </div>
+
+            <div class="frame">
+              {{ item.logs[1].contexData?.stackTrace || item.logs[2].contexData?.stackTrace }}
+            </div>
+
+          </div>
+
+        </div>
+
+        <mat-expansion-panel class="mt-4">
+
+          <mat-expansion-panel-header>
+
+            <mat-panel-title>
+
+              <i class="bi bi-clock-history"></i>
+              <span style="margin-left: 0.5%;">Ver histórico de Logs...</span>
+
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-card>
+
+            <mat-card-content>
+
+              <div class="card mb-4" *ngFor="let log of item?.logs;"
+                [ngClass]="log.context === 'ApiExceptionLogContext' ? 'error' : 'info' ">
+
+                <div class="card-body pt-1 pb-2">
+
+                  <div class="mb-3">
+
+                    <span>
+                      <small class="text-muted"> <span style="font-size: 16px;">
+                          {{ log?.at | date: 'dd/MM/yyyy, h:mm:ssa' }}</span>
+                      </small>
+                    </span>
+
+                  </div>
+
+                  <pre><span style="font-size: 16px;">{{ log?.message | json}}</span></pre>
+
+                  <ng-container class="card mb-3 mt-5" *ngIf="log.context === 'RequestLogContext'">
+
+                    <strong style="font-size: 17px;">
+                      Payload -
+                    </strong>
+
+                    <a href="javascript:void(0)" style="font-size: 16px;  margin-left: 10px;" title="Copiar"
+                      [cdkCopyToClipboard]="log.contexData?.payload | json"
+                      (cdkCopyToClipboardCopied)="onClipboardCopy($event)">
+                      <i class="bi bi-clipboard"></i>
+                      Copiar
+                    </a>
+
+
+                    <div class="card-body raw-json-container">
+
+                      <pre style="font-size: 16px;">{{ log.contexData?.payload | json }}</pre>
+
+                    </div>
+
+                  </ng-container>
+
+                </div>
+
+              </div>
+
+            </mat-card-content>
+
+          </mat-card>
+
+        </mat-expansion-panel>
+        <hr>
+
+        <div class="row">
+
+          <div class="col-md-8">
+
+            <small class="text-muted">SessionId: </small>
+
+          </div>
+
+          <div class="col-md-4 text-end" *ngIf="item.logs[3]?.context === 'ResponseLogContext' ||
+          item.logs[2]?.context === 'ResponseLogContext' ||
+          item.logs[1]?.context === 'ResponseLogContext'">
+            Finalizado com status
+
+            <span [class]="getClassSpan(item.logs[3]?.contexData?.statusCode ||
+            item.logs[2]?.contexData.statusCode || item.logs[1]?.contexData.statusCode)">
+              {{
+              item.logs[3]?.contexData?.statusCode ||
+              item.logs[2]?.contexData.statusCode ||
+              item.logs[1]?.contexData.statusCode
+              }}
+
+            </span>
+            em <span>{{ item.logs[3]?.contexData?.ms || item.logs[2]?.contexData.ms }}</span>ms
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="loading" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <pagination-template class="row justify-content-end mb-3" #pagination="paginationApi" (pageChange)="page = $event">
+
+    <div class="col-md-5">
+      <span class="">Itens por página
+        <select [ngModel]="pageSize" (change)="changePaginationSize($any($event).target.value)" class="">
+          <option [value]="size" *ngFor="let size of pageSizes">
+            {{size}}
+          </option>
+        </select>
+      </span>
+      Página {{page}} de {{lastPage}}
+
+      <span class="" [class.disabled]="pagination.isFirstPage()">
+        <a *ngIf="!pagination.isFirstPage()" class="btn btn-outline-primary btn-sm " (click)="pagination.previous()">
+          Anterior </a>
+      </span>
+      &nbsp;
+      <span class="" [class.disabled]="pagination.isLastPage()">
+        <a *ngIf="!pagination.isLastPage()" class="btn btn-outline-primary btn-sm " (click)="pagination.next()"> Próxima
+        </a>
+      </span>
+
+    </div>
+
+  </pagination-template>
+
+</div>
