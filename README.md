@@ -3,8 +3,6 @@
 	<h1>Projeto Angular - Monitoramento de Logs Internos</h1>
 	<h2>Descrição</h2>
 	<p>Este projeto é um formulário em Angular que retorna uma tela de monitoramento de logs internos de um mock. Toda a lógica de renderização é feita pelo front-end de acordo com o retorno do mock. A maior dificuldade deste projeto foi criar métodos para trabalhar com os dados, pois o mock não tem um padrão definido.</p>
-less
-Copy code
 <h2>Tecnologias Utilizadas</h2>
 <ul>
 	<li>Angular</li>
